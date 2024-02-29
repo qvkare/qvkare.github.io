@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spline Scene Viewer</title>
+<title>Qvkare</title>
+<link rel="icon" type="image/png" href="https://i.seadn.io/gcs/files/b42b091ca5120847fe59eef776466048.png">
 <style>
   /* CSS Reset */
   * {
@@ -17,8 +18,9 @@
     height: 100%;
     overflow: hidden;
     position: relative;
+    background-color: #f0f0f0; /* Arka plan rengi, yükleme sırasında görsellik sağlar */
   }
-  
+
   spline-viewer {
     width: 100%;
     height: 100%;
@@ -27,8 +29,6 @@
 
   /* Yükleme Barı Stilleri */
   .loadingio-spinner-bean-eater-yvybsfsj4m {
-    width: 100px;
-    height: 100px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -36,8 +36,7 @@
     z-index: 1000; /* Yükleme animasyonunu her şeyin üstünde tutar */
   }
   
-  /* Yükleme barı CSS */
-  /* Yükleme barınızın CSS kodları burada bulunuyor */
+  /* Yükleme barı ve diğer stil tanımlamalarınız burada yer alacak */
 </style>
 </head>
 <body>

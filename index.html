@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Qvkare</title>
+<title>Spline Scene Viewer</title>
 <style>
   /* CSS Reset */
   * {
@@ -16,6 +16,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    position: relative;
   }
   
   spline-viewer {
@@ -23,12 +24,42 @@
     height: 100%;
     display: block;
   }
+
+  /* Yükleme Barı Stilleri */
+  .loadingio-spinner-bean-eater-yvybsfsj4m {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Yükleme animasyonunu her şeyin üstünde tutar */
+  }
+  
+  /* Yükleme barı CSS */
+  /* Yükleme barınızın CSS kodları burada bulunuyor */
 </style>
-<script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.54/build/spline-viewer.js"></script>
 </head>
 <body>
 
+<div class="loadingio-spinner-bean-eater-yvybsfsj4m"><div class="ldio-06ug8mcle3ke">
+<div><div></div><div></div><div></div></div><div><div></div><div></div><div></div></div>
+</div></div>
+
 <spline-viewer url="https://prod.spline.design/lSGyZaV1ovCEj-7T/scene.splinecode"></spline-viewer>
 
+<script type="module">
+  import { Spline } from '@splinetool/viewer';
+  
+  const splineViewer = document.querySelector('spline-viewer');
+  const loadingIndicator = document.querySelector('.loadingio-spinner-bean-eater-yvybsfsj4m');
+
+  splineViewer.addEventListener('load', () => {
+    // Model yüklendiğinde, yükleme animasyonunu gizle
+    loadingIndicator.style.display = 'none';
+  });
+</script>
+
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.54/build/spline-viewer.js"></script>
 </body>
 </html>

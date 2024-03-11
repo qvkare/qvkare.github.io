@@ -1,1 +1,1 @@
-Hello blue dot
+Hello pale blue dot

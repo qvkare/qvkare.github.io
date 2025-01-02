@@ -1,73 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Qvkare</title>
-<link rel="icon" type="image/png" href="https://i.seadn.io/gcs/files/b42b091ca5120847fe59eef776466048.png">
-<style>
-  /* CSS Reset */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-    background-color: #f0f0f0; /*  */
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qvkare</title>
+    <link rel="icon" type="image/png" href="https://i.seadn.io/gcs/files/b42b091ca5120847fe59eef776466048.png">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #f0f0f0;
+        }
 
-  spline-viewer {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
+        spline-viewer {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
 
-  /* Yükleme Barı Stilleri */
-  .loadingio-spinner-bean-eater-yvybsfsj4m {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000; /*  */
-  }
-</style>
+        /* Loading Animation Styles */
+        .loadingio-spinner-bean-eater-yvybsfsj4m {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+
+        /* Add animation styles for the loading indicator if needed */
+        .ldio-06ug8mcle3ke > div {
+            /* Your existing animation styles */
+        }
+    </style>
 </head>
 <body>
+    <!-- Loading Indicator -->
+    <div class="loadingio-spinner-bean-eater-yvybsfsj4m">
+        <div class="ldio-06ug8mcle3ke">
+            <div><div></div><div></div><div></div></div>
+            <div><div></div><div></div><div></div></div>
+        </div>
+    </div>
 
-<div class="loadingio-spinner-bean-eater-yvybsfsj4m"><div class="ldio-06ug8mcle3ke">
-<div><div></div><div></div><div></div></div><div><div></div><div></div><div></div></div>
-</div></div>
+    <!-- Spline Viewer -->
+    <spline-viewer url="https://prod.spline.design/McoTl3m95XTatwXV/scene.splinecode"></spline-viewer>
 
-<!-- Güncellenmiş Spline modeli URL'si -->
-<spline-viewer url="https://prod.spline.design/ZmW3sQMArAFtod1v/scene.splinecode"></spline-viewer>
+    <!-- Scripts -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.54/build/spline-viewer.js"></script>
+    <script type="module">
+        const splineViewer = document.querySelector('spline-viewer');
+        const loadingIndicator = document.querySelector('.loadingio-spinner-bean-eater-yvybsfsj4m');
 
-<script type="module">
-  import { Spline } from '@splinetool/viewer';
-  
-  const splineViewer = document.querySelector('spline-viewer');
-  const loadingIndicator = document.querySelector('.loadingio-spinner-bean-eater-yvybsfsj4m');
+        // Show loading animation when page loads
+        window.onload = function() {
+            setTimeout(function() {
+                // Hide loading animation after 15 seconds
+                loadingIndicator.style.display = 'none';
+            }, 15000);
+        };
 
-  // Sayfa yüklendiğinde yükleme animasyonunu göster
-  window.onload = function() {
-    setTimeout(function() {
-      // 15 saniye sonra yükleme animasyonunu gizle
-      loadingIndicator.style.display = 'none';
-    }, 15000); // 15000 milisaniye = 15 saniye
-  };
-
-  splineViewer.addEventListener('load', () => {
-    // Model yüklendiğinde, yükleme animasyonunu hemen gizle
-    // Bu kısım, model 15 saniyeden daha erken yüklendiğinde çalışır
-    loadingIndicator.style.display = 'none';
-  });
-</script>
-
-<!-- Spline Viewer sürümü -->
-<script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.86/build/spline-viewer.js"></script>
+        // Hide loading animation when model loads
+        splineViewer.addEventListener('load', () => {
+            loadingIndicator.style.display = 'none';
+        });
+    </script>
 </body>
 </html>

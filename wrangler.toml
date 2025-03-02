@@ -1,4 +1,4 @@
-name = "static-site"
+name = "qvkare"
 main = "worker.js"
 compatibility_date = "2023-12-01"
 

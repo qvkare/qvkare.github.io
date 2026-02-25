@@ -1,191 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Qvkare</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qvkare</title>
+    <link rel="icon" type="image/png" href="https://i.seadn.io/gcs/files/b42b091ca5120847fe59eef776466048.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-red: #E63946;
+            --color-blue: #4895EF;
+            --color-bg: #0a0a0a;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
 
-  <link
-    rel="icon"
-    type="image/png"
-    href="https://i.seadn.io/gcs/files/b42b091ca5120847fe59eef776466048.png"
-  />
+        body {
+            background-color: var(--color-bg);
+            color: #ffffff;
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
 
-  <style>
- 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        .text-mono { font-family: var(--font-mono); }
 
-  
-    html, body {
-      width: 100%;
-      height: 100%;
-      background-color: #f0f0f0;
-    }
+        .pixel-overlay { image-rendering: pixelated; }
 
-    .spline-container {
-      width: 100%;
-      height: calc(100% - 80px); /* 80px for footer */
-    }
+        .project-row {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 14px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: border-color 0.3s ease, padding-left 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
 
-    spline-viewer {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
+        .project-row:hover {
+            border-color: var(--color-blue);
+            padding-left: 8px;
+        }
 
-    footer {
-      width: 100%;
-      height: 80px;
-      background-color: #000; /* Black */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        .project-row:hover .project-name {
+            color: var(--color-blue);
+        }
 
-    #footerIcons {
-      display: none;
-      /* Layout: row with spacing */
-      flex-direction: row;
-      align-items: center;
-      gap: 30px; /* Space between the icons */
-    }
+        .project-desc {
+            font-size: 12px;
+            color: #888;
+            margin-top: 4px;
+            line-height: 1.4;
+        }
 
-    /* Icon link styling */
-    .icon-link {
-      position: relative;       /* Needed for tooltip positioning */
-      display: inline-flex;
-      text-decoration: none;
-      justify-content: center;
-      align-items: center;
-      width: 24px;  /* Icon size */
-      height: 24px; /* Icon size */
-    }
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+        }
 
-    .icon-link svg {
-      width: 100%;
-      height: 100%;
-      fill: #ffffff; /* White icons */
-      transition: fill 0.2s;
-    }
+        .social-link svg {
+            width: 100%;
+            height: 100%;
+            fill: #555;
+            transition: fill 0.2s;
+        }
 
-    .icon-link:hover svg {
-      fill: #cccccc; /* Light gray on hover */
-    }
+        .social-link:hover svg {
+            fill: #ffffff;
+        }
 
-    /* Tooltip styling */
-    .tooltip {
-      position: absolute;
-      bottom: 100%;         /* Position above the icon */
-      left: 50%;
-      transform: translateX(-50%);
-      background: #222;     /* Dark background */
-      color: #fff;          /* White text */
-      padding: 4px 8px;     /* Some spacing around text */
-      border-radius: 4px;   /* Rounded corners */
-      font-size: 12px;      /* Smaller text */
-      white-space: nowrap;  /* Prevent wrapping */
-      display: none;        /* Hidden by default */
-      pointer-events: none; /* So the tooltip doesn't block clicks */
-      margin-bottom: 6px;   /* A little space between icon and tooltip */
-    }
+        .title-red { color: var(--color-red); }
+        .title-blue { color: var(--color-blue); }
 
-
-    .icon-link:hover .tooltip {
-      display: block;
-    }
-  </style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+    </style>
 </head>
 <body>
 
-  <div class="spline-container">
-    <spline-viewer url="https://prod.spline.design/Co14NgjWPVSYkiI6/scene.splinecode"></spline-viewer>
-  </div>
+    <div class="h-screen flex items-center justify-center">
+        <div class="flex items-start gap-8">
 
+        <!-- Left: Title -->
+        <div class="flex items-center h-[380px]">
+            <span class="text-mono text-xs tracking-[3px]">
+                <span class="title-red">BLOCKS</span> <span class="text-white/40">&</span> <span class="title-blue">PIXEL MAXI</span>
+            </span>
+        </div>
 
-  <footer>
+        <!-- Center: Portrait + Social (truly centered) -->
+        <div class="flex flex-col items-center">
+            <div class="relative group">
+                <img src="https://i.seadn.io/gcs/files/b42b091ca5120847fe59eef776466048.png" class="w-[320px] h-[320px] lg:w-[380px] lg:h-[380px] object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-out pixel-overlay" alt="Portrait">
+                <div class="absolute -top-4 -left-4 w-8 h-8 border-t border-l border-[var(--color-red)]/40"></div>
+                <div class="absolute -bottom-4 -right-4 w-8 h-8 border-b border-r border-[var(--color-blue)]/40"></div>
+            </div>
+            <div class="flex items-center gap-5 mt-6">
+                <a href="https://github.com/qvkare" target="_blank" class="social-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 .297c-6.63 0-12 5.373-12 12
+                                 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577
+                                 0-.285-.01-1.04-.016-2.04-3.338.726-4.042-1.613-4.042-1.613
+                                 -.546-1.387-1.333-1.757-1.333-1.757
+                                 -1.089-.744.084-.73.084-.73
+                                 1.205.084 1.84 1.236 1.84 1.236
+                                 1.07 1.835 2.807 1.304 3.492.997
+                                 .108-.776.417-1.304.76-1.604
+                                 -2.665-.303-5.466-1.333-5.466-5.93
+                                 0-1.31.469-2.38 1.236-3.22
+                                 -.124-.303-.536-1.523.116-3.176 0 0 1.01-.324 3.3 1.23
+                                 .96-.267 1.98-.399 3-.404 1.02.005 2.04.137 3 .403
+                                 2.29-1.555 3.3-1.23 3.3-1.23
+                                 .652 1.653.24 2.873.117 3.176
+                                 .77.84 1.235 1.91 1.235 3.22
+                                 0 4.61-2.807 5.625-5.48 5.92
+                                 .43.37.81 1.102.81 2.222
+                                 0 1.606-.014 2.898-.014 3.293
+                                 0 .317.215.687.825.57
+                                 C20.565 22.092 24 17.592 24 12.297
+                                 24 5.373 18.627.297 12 .297z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/Qvkare" target="_blank" class="social-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 462.799">
+                        <path fill-rule="nonzero"
+                              d="M403.229 0h78.506L310.219 196.04 512 462.799H354.002L230.261 301.007
+                                 88.669 462.799h-78.56l183.455-209.683L0 0h161.999l111.856 147.88
+                                 L403.229 0zm-27.556 415.805h43.505L138.363 44.527h-46.68l283.99 371.278z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
 
-    <div id="footerIcons">
+        <!-- Right: Projects -->
+        <div class="flex items-start pt-4">
+            <div class="w-[300px] lg:w-[340px]">
 
-      <a 
-        href="https://github.com/qvkare" 
-        target="_blank"
-        class="icon-link"
-      >
+                <a href="https://x.com/lineabuild/status/1913222836056969581?s=46&t=YFgP5zx6CiaEdna2tfclAQ" target="_blank" class="project-row">
+                    <div>
+                        <span class="font-bold project-name transition-colors">Linea MCP</span>
+                        <div class="project-desc">MCP server that lets AI agents read wallets, send tokens, and call contracts on Linea. Won 1st place at Linea Dev Cook-Off.</div>
+                    </div>
+                    <span class="font-mono text-xs text-[var(--color-red)] ml-4 whitespace-nowrap">1ST PLACE</span>
+                </a>
 
-        <span class="tooltip">Qvkare</span>
+                <a href="https://x.com/theblessnetwork/status/1935370517336440866?s=46&t=YFgP5zx6CiaEdna2tfclAQ" target="_blank" class="project-row">
+                    <div>
+                        <span class="font-bold project-name transition-colors">Mirror Search</span>
+                        <div class="project-desc">Privacy preserving search tool running in WebAssembly on Bless Network's shared compute layer. Won 1st place at Bless Network Genesis Hackathon.</div>
+                    </div>
+                    <span class="font-mono text-xs text-[var(--color-red)] ml-4 whitespace-nowrap">1ST PLACE</span>
+                </a>
 
+                <a href="https://www.youtube.com/live/xuGBbwtmjFc?si=NYDxVvyymxHTHtEq&t=957" target="_blank" class="project-row">
+                    <div>
+                        <span class="font-bold project-name transition-colors">Copil</span>
+                        <div class="project-desc">AI powered DeFi copilot that automates cross-chain strategies with Chainlink Automation. Won 2nd place at Chainlink Chromion Hackathon.</div>
+                    </div>
+                    <span class="font-mono text-xs text-[var(--color-red)] ml-4 whitespace-nowrap">2ND PLACE</span>
+                </a>
 
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24">
-          <path d="M12 .297c-6.63 0-12 5.373-12 12 
-                   0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 
-                   0-.285-.01-1.04-.016-2.04-3.338.726-4.042-1.613-4.042-1.613 
-                   -.546-1.387-1.333-1.757-1.333-1.757 
-                   -1.089-.744.084-.73.084-.73 
-                   1.205.084 1.84 1.236 1.84 1.236 
-                   1.07 1.835 2.807 1.304 3.492.997 
-                   .108-.776.417-1.304.76-1.604 
-                   -2.665-.303-5.466-1.333-5.466-5.93 
-                   0-1.31.469-2.38 1.236-3.22 
-                   -.124-.303-.536-1.523.116-3.176 0 0 1.01-.324 3.3 1.23 
-                   .96-.267 1.98-.399 3-.404 1.02.005 2.04.137 3 .403 
-                   2.29-1.555 3.3-1.23 3.3-1.23 
-                   .652 1.653.24 2.873.117 3.176 
-                   .77.84 1.235 1.91 1.235 3.22 
-                   0 4.61-2.807 5.625-5.48 5.92 
-                   .43.37.81 1.102.81 2.222 
-                   0 1.606-.014 2.898-.014 3.293 
-                   0 .317.215.687.825.57
-                   C20.565 22.092 24 17.592 24 12.297 
-                   24 5.373 18.627.297 12 .297z"/>
-        </svg>
-      </a>
+            </div>
+        </div>
 
-
-      <a 
-        href="https://x.com/Qvkare"
-        target="_blank"
-        class="icon-link"
-      >
-
-        <span class="tooltip">Qvkare</span>
-
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          shape-rendering="geometricPrecision"
-          text-rendering="geometricPrecision"
-          image-rendering="optimizeQuality"
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          viewBox="0 0 512 462.799">
-          <path fill-rule="nonzero"
-                d="M403.229 0h78.506L310.219 196.04 512 462.799H354.002L230.261 301.007
-                   88.669 462.799h-78.56l183.455-209.683L0 0h161.999l111.856 147.88
-                   L403.229 0zm-27.556 415.805h43.505L138.363 44.527h-46.68l283.99 371.278z"/>
-        </svg>
-      </a>
+        </div>
     </div>
-  </footer>
 
+    <style>
+        @media (max-width: 768px) {
+            .h-screen > .flex { flex-direction: column; align-items: center; gap: 32px; }
+            .h-screen > .flex > div:first-child { height: auto !important; }
+            .h-screen > .flex > div:last-child > div { width: 100% !important; max-width: 380px; }
+        }
+    </style>
 
-  <script
-    type="module"
-    src="https://unpkg.com/@splinetool/viewer@1.9.56/build/spline-viewer.js"
-  ></script>
-
-  <script>
-    // Show icons after 2 seconds
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('footerIcons').style.display = 'flex';
-      }, 2000);
-    });
-  </script>
 </body>
 </html>
